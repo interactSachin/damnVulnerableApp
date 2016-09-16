@@ -76,7 +76,7 @@ else{
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<a class="navbar-brand" href="LogoutServlet">Logout</a><img src="/HackMe/images/<%=userPic%>.jpeg" height="70" width="70">
+				<a class="navbar-brand" href="LogoutServlet">Logout</a><img src="/HackMe/images/<%=userPic%>.jpeg" height="100" width="100">
 			</ul>
 		</div>
 	</div>

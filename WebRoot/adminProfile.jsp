@@ -61,6 +61,7 @@ table, th, td {
 					<tr>
 						<th>Name</th>
 						<th>Email</th>
+						<th>Department</th>
 					</tr>
 					<%
 						response.setHeader("Cache-Control",
@@ -76,6 +77,7 @@ table, th, td {
 					%>
 					<%=" <tr><td>" + rs.getString("name")
 							+ "</td><td>" + rs.getString("email")
+							+ "</td><td>" + rs.getString("role")
 							+ "</td></tr>"%>
 					<%
 						}

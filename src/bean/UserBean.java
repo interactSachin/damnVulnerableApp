@@ -12,6 +12,7 @@ private String balance;
 private String password;
 private long lastLogon;
 private String image;
+private String role;
 public String getName() {
 	return name;
 }
@@ -53,5 +54,11 @@ public String getImage() {
 }
 public void setImage(String image) {
 	this.image = image;
+}
+public String getRole() {
+	return role;
+}
+public void setRole(String role) {
+	this.role = role;
 }
 }

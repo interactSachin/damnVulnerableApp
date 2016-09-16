@@ -48,6 +48,7 @@ public class UserDao {
 			user.setBalance(rs.getString("balance"));
 			user.setLastLogon(rs.getLong("lastLogonTime"));
 			user.setImage(rs.getString("image"));
+			user.setRole(rs.getString("role"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

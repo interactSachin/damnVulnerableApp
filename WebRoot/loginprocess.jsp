@@ -20,10 +20,10 @@
 				//if (user.getEmail().equals(obj.getEmail())) 
 				{
 					session.setAttribute("user", user);
-					if (user.getName().equalsIgnoreCase("admin")) {
+					if (user.getRole().equalsIgnoreCase("admin")) {
 						response.sendRedirect("adminProfile.jsp");
 						return;
-					} else if (user.getName().equalsIgnoreCase("account")) {
+					} else if (user.getRole().equalsIgnoreCase("account")) {
 						response.sendRedirect("accountProfile.jsp");
 						return;
 					} else {

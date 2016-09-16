@@ -11,6 +11,7 @@ private String email;
 private String balance;
 private String password;
 private long lastLogon;
+private String image;
 public String getName() {
 	return name;
 }
@@ -46,5 +47,11 @@ public long getLastLogon() {
 }
 public void setLastLogon(long lastLogon) {
 	this.lastLogon = lastLogon;
+}
+public String getImage() {
+	return image;
+}
+public void setImage(String image) {
+	this.image = image;
 }
 }

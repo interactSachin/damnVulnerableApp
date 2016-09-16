@@ -48,6 +48,20 @@ p.big {
 			<div class="sk-circle12 sk-circle"></div>
 		</div>
 	</div>
+	<%
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); //Directs caches not to store the page under any circumstance
+response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward 
+
+UserBean user= (UserBean)request.getSession().getAttribute("user");
+String userPic;
+if(null==user||user.getImage()==null){
+	userPic="default";
+}
+else{
+	userPic=user.getImage();
+}
+%>
 	<section class="navbar navbar-fixed-top custom-navbar"
 		role="navigation">
 	<div class="container">
@@ -62,7 +76,7 @@ p.big {
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<a class="navbar-brand" href="LogoutServlet">Logout</a>
+				<a class="navbar-brand" href="LogoutServlet">Logout</a><img src="/HackMe/images/<%=userPic%>.jpeg" height="70" width="70">
 			</ul>
 		</div>
 	</div>
@@ -73,15 +87,10 @@ p.big {
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 
-				<%
-response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); //Directs caches not to store the page under any circumstance
-response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward 
-
-UserBean user= (UserBean)request.getSession().getAttribute("user");
+<%				
 if (null != user){
-out.println("<p class=\"big\"><br><br><h3>Hi " + user.getName() + " you are successfully logged in</h3>");
-out.print("<br><p> Balance in your account is: " + user.getBalance()+"</p>");
+out.println("<p class=\"big\"><br><br><br><br><h3>Hi " + user.getName() + " you are successfully logged in</h3>");
+out.print("<br> Balance in your account is: " + user.getBalance()+"</p>");
 }
 else{
 	response.sendRedirect("LogoutServlet");

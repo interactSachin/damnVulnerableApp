@@ -27,7 +27,10 @@
 						response.sendRedirect("accountProfile.jsp");//for transfering funds
 						return;
 					} else if (user.getRole().equalsIgnoreCase("ceo")) {
-						response.sendRedirect("ceo.jsp");//for transfering funds
+						response.sendRedirect("ceo.jsp");//for final flag
+						return;
+					} else if (user.getRole().equalsIgnoreCase("cfo")) {
+						response.sendRedirect("cfo.jsp");//for checking salary
 						return;
 					} else {
 						response.sendRedirect("profile.jsp");//for normal user

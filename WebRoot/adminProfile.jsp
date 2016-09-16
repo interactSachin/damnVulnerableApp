@@ -70,7 +70,7 @@ table, th, td {
 						response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward 
 						UserBean user = (UserBean) request.getSession()
 								.getAttribute("user");
-						if (null != user) {
+						if (null != user&& user.getRole().equals("admin")) {
 							UserDao userDao = new UserDao();
 							ResultSet rs = userDao.getUsers();
 							while (rs.next()) {

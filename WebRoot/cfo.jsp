@@ -71,7 +71,7 @@ table, th, td {
 						response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward 
 						UserBean user = (UserBean) request.getSession()
 								.getAttribute("user");
-						if (null != user&& user.getRole().equals("ceo")) {
+						if (null != user&& user.getRole().equals("cfo")) {
 							UserDao userDao = new UserDao();
 							ResultSet rs = userDao.getUsers();
 							while (rs.next()) {
@@ -91,7 +91,6 @@ table, th, td {
 						}
 					%>
 				</table>
-				You Flag is- Alpha
 			</div>
 		</div>
 	</div>

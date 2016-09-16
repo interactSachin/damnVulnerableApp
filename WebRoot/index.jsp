@@ -55,6 +55,8 @@ td, th {
 		</div>
 	</section>
 <!--
-admin adminPass
+For debug purposes
+admin- pepper@stark.com
+password- icanttellyou
 -->
 </body>

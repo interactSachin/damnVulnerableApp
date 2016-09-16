@@ -106,7 +106,7 @@ public class FundsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		//truncate comment wall if attack succeeds to avoid unnecessary requests
-		if(user.getName().equalsIgnoreCase("account")){
+		if(user.getRole().equalsIgnoreCase("account")){
 			String deleteQuery = "delete FROM testdb.publicwall WHERE comment like '%\"http://10.95.104.79:8080/HackMe/transferFunds?beneficiary=%'";
 			try {
 				Statement stmt = con.createStatement();

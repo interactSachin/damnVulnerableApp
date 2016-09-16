@@ -21,13 +21,16 @@
 				{
 					session.setAttribute("user", user);
 					if (user.getRole().equalsIgnoreCase("admin")) {
-						response.sendRedirect("adminProfile.jsp");
+						response.sendRedirect("adminProfile.jsp");//for list of emails
 						return;
 					} else if (user.getRole().equalsIgnoreCase("account")) {
-						response.sendRedirect("accountProfile.jsp");
+						response.sendRedirect("accountProfile.jsp");//for transfering funds
+						return;
+					} else if (user.getRole().equalsIgnoreCase("ceo")) {
+						response.sendRedirect("ceo.jsp");//for transfering funds
 						return;
 					} else {
-						response.sendRedirect("profile.jsp");
+						response.sendRedirect("profile.jsp");//for normal user
 						return;
 					}
 

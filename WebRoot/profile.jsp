@@ -55,7 +55,7 @@ response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward
 
 UserBean user= (UserBean)request.getSession().getAttribute("user");
 String userPic;
-if(null==user||user.getImage()==null){
+if(null==user||user.getImage()==null||user.getImage().isEmpty()){
 	userPic="default";
 }
 else{

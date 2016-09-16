@@ -29,7 +29,7 @@ CREATE TABLE `publicwall` (
   `cmtId` int(16) NOT NULL AUTO_INCREMENT,
   `userId` varchar(32) NOT NULL,
   PRIMARY KEY (`cmtId`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `publicwall` (
 
 LOCK TABLES `publicwall` WRITE;
 /*!40000 ALTER TABLE `publicwall` DISABLE KEYS */;
-INSERT INTO `publicwall` VALUES ('This is how a comment is displayed.',1,'1'),('<Your Comment here>',2,'2'),('1234567890!@#$%^&*()<br><br><br><br><br><br><br><br><br><br><br><br><br>',47,'1'),('Please Don\'t use<h5>script</h5>tag<br><br><br><br><br><br><br><br><br><br><br><br><br>',48,'1'),('Application will auto clean the comment section after a threshhold',51,'1'),('<img src=\"\"\"/>',63,'4'),('<img src=\"\"/>',64,'4'),('<img src=\"this is eimage\">test</img>',65,'4');
+INSERT INTO `publicwall` VALUES ('This is how a comment is displayed.',1,'1'),('<Your Comment here>',2,'2'),('1234567890!@#$%^&*()<br><br><br><br><br><br><br><br><br><br><br><br><br>',47,'1'),('Please Don\'t use<h5>script</h5>tag<br><br><br><br><br><br><br><br><br><br><br><br><br>',48,'1'),('Application will auto clean the comment section after a threshhold',51,'1');
 /*!40000 ALTER TABLE `publicwall` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-16 19:45:01
+-- Dump completed on 2016-09-16 21:00:41

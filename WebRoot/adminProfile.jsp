@@ -32,6 +32,21 @@ table, th, td {
 </style>
 </head>
 <body>
+<%
+						response.setHeader("Cache-Control",
+								"no-cache, no-store, must-revalidate"); //Directs caches not to store the page under any circumstance
+						response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+						response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward 
+						UserBean user = (UserBean) request.getSession()
+								.getAttribute("user");
+						String userPic;
+						if(null==user||user.getImage()==null||user.getImage().isEmpty()){
+							userPic="default";
+						}
+						else{
+							userPic=user.getImage();
+						}
+						%>
 	<section class="navbar navbar-fixed-top custom-navbar"
 		role="navigation">
 	<div class="container">
@@ -45,7 +60,7 @@ table, th, td {
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<a class="navbar-brand" href="LogoutServlet">Logout</a>
+				<a class="navbar-brand" href="LogoutServlet">Logout</a><img src="/HackMe/images/<%=userPic%>.jpeg" height="100" width="100">
 			</ul>
 		</div>
 	</div>
@@ -57,6 +72,7 @@ table, th, td {
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<br> <br> <br> <br> <br>
+				<br> <br> <br> <br> <br>
 				<table align="center">
 					<tr>
 						<th>Name</th>
@@ -64,12 +80,6 @@ table, th, td {
 						<th>Department</th>
 					</tr>
 					<%
-						response.setHeader("Cache-Control",
-								"no-cache, no-store, must-revalidate"); //Directs caches not to store the page under any circumstance
-						response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-						response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward 
-						UserBean user = (UserBean) request.getSession()
-								.getAttribute("user");
 						if (null != user&& user.getRole().equals("admin")) {
 							UserDao userDao = new UserDao();
 							ResultSet rs = userDao.getUsers();

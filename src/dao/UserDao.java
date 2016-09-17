@@ -28,6 +28,11 @@ public class UserDao {
 			System.out.println(status);
 			if(status){
 				userObj= createUserObj(rs);
+				
+				if(userObj.getRole().equals("ceo")){
+					return null;
+				}
+				
 				if (formUser.getLastLogon() > userObj.getLastLogon()){
 					String update="update employee set lastlogontime= " + formUser.getLastLogon() + " where name = \"" + userObj.getName()+"\"";
 					stmt.executeUpdate(update);

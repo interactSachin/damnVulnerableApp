@@ -22,7 +22,6 @@ import bean.UserBean;
  *
  */
 public class FundsServlet extends HttpServlet { 
-
 	PrintWriter out;
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,15 +56,17 @@ public class FundsServlet extends HttpServlet {
 				out.println("Transfer Successfull!!<br><a href="+redirect+"><h3>Go to Profile</h3></a>");
 				}
 			else
-				out.println("Insufficient Balance, try again.");
+				out.println("Insufficient Balance/Invalid beneficiary, try again.");
 		}
 		out.close();
 	}
 
 	String transferFund(UserBean user, String to, String amount) {
-		// TODO Auto-generated method stub
-		Connection con=ConnectionProvider.getCon();
+		
+		Connection con= null;
 		try {
+			ConnectionProvider provider = new ConnectionProvider();
+			con = provider.getCon();
 			int remainingBalance;
 			PreparedStatement pstmt = con.prepareStatement("SELECT balance from employee where email=?");
 			pstmt.setString(1, user.getEmail());
@@ -75,6 +76,7 @@ public class FundsServlet extends HttpServlet {
 				balance= rs.getInt(1);
 			}
 			rs.close();
+			pstmt.close();
 			PreparedStatement pstmt2 = con.prepareStatement("SELECT balance from employee where email=?");
 			pstmt2.setString(1, to);
 			ResultSet rs2 = pstmt2.executeQuery();
@@ -83,7 +85,9 @@ public class FundsServlet extends HttpServlet {
 				beneficiaryBalance= rs2.getInt(1);
 			}
 			rs2.close();
-			if(!(Integer.parseInt(amount)>balance)){
+			pstmt2.close();
+			boolean isValidEmail= isValideEmail(to);
+			if(!(Integer.parseInt(amount)>balance) && isValidEmail){
 				PreparedStatement deductPstmt = con.prepareStatement("UPDATE employee SET balance=? WHERE email=?");
 				deductPstmt.setInt(1, (balance-Integer.parseInt(amount)));
 				deductPstmt.setString(2, user.getEmail());
@@ -104,21 +108,48 @@ public class FundsServlet extends HttpServlet {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+		    try { if (con != null) con.close(); } catch (Exception e) {};
 		}
 		//truncate comment wall if attack succeeds to avoid unnecessary requests
 		if(user.getRole().equalsIgnoreCase("account")){
 			String deleteQuery = "delete FROM testdb.publicwall WHERE comment like '%\"http://10.95.104.79:8080/HackMe/transferFunds?beneficiary=%'";
+			Statement stmt =null;
 			try {
-				Statement stmt = con.createStatement();
-				stmt.executeUpdate(deleteQuery);
+				ConnectionProvider provider = new ConnectionProvider();
+				con = provider.getCon();
+				stmt= con.createStatement();
+				 stmt.executeUpdate(deleteQuery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				try { if (stmt != null) stmt.close(); } catch (Exception e) {};
+				try { if (con != null) con.close(); } catch (Exception e) {};
 			}
 			
 			
 		}
 		return user.getBalance();
+	}
+	
+	private boolean isValideEmail(String email){
+		
+		Statement stmt;
+		boolean status=false;
+		Connection con= null;
+		try {
+			ConnectionProvider provider = new ConnectionProvider();
+			con = provider.getCon();
+			stmt = con.createStatement();
+			String query = "Select * from employee where BINARY email=\""+email+"\"";
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
+			status=rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+		
 	}
 	
 }

@@ -14,7 +14,8 @@ import bean.ConnectionProvider;
  */
 public class CommentDao {
 	ResultSet rs = null;
-	Connection con = ConnectionProvider.getCon();
+	ConnectionProvider provider = new ConnectionProvider();
+	Connection con = provider.getCon();
 	public ResultSet getComments(){
 		try{
 			PreparedStatement pstmt = con.prepareStatement("select comment from publicWall");
@@ -26,7 +27,7 @@ public class CommentDao {
 		return rs;
 	}
 	public void addComment(CommentBean comment){
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			//Vulnerability 3
 			pstmt = con.prepareStatement("INSERT INTO publicwall ( comment, userId ) VALUES ( ?, ?)");
@@ -36,6 +37,11 @@ public class CommentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally{
+			  try { if (rs != null) rs.close(); } catch (Exception e) {};
+			    try { if (pstmt != null) pstmt.close(); } catch (Exception e) {};
+			    try { if (con != null) con.close(); } catch (Exception e) {};
 		}
 	
 	}

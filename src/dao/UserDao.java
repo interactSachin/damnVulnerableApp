@@ -10,22 +10,22 @@ import bean.UserBean;
  *
  */
 public class UserDao {
-	Connection con=ConnectionProvider.getCon();
+	ConnectionProvider provider = new ConnectionProvider();
+	Connection con=provider.getCon();
 	ResultSet rs = null;
 	
 	public UserBean validate(UserBean formUser) throws CredentialExpiredException{
 
 		UserBean userObj = null;
+		Statement stmt= null; 
 		try{
 			boolean status=false;
 			
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			//Vulnerability 1
 			String query = "Select * from employee where BINARY email =\""+formUser.getEmail()+"\" and password =\""+formUser.getPassword()+"\"";
-			System.out.println(query);
 			ResultSet rs = stmt.executeQuery(query);
 			status=rs.next();
-			System.out.println(status);
 			if(status){
 				userObj= createUserObj(rs);
 				
@@ -36,11 +36,19 @@ public class UserDao {
 				if (formUser.getLastLogon() > userObj.getLastLogon()){
 					String update="update employee set lastlogontime= " + formUser.getLastLogon() + " where name = \"" + userObj.getName()+"\"";
 					stmt.executeUpdate(update);
+					System.out.println("** User logged in: "+userObj.getName());
 				}
 				else 
 					throw new CredentialExpiredException();
 			}
-		}catch(SQLException e){}
+		}catch(SQLException e){
+			System.out.println(e.getStackTrace());
+		}
+		finally{
+			  try { if (rs != null) rs.close(); } catch (Exception e) {};
+			    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
+			    try { if (con != null) con.close(); } catch (Exception e) {};
+		}
 		return userObj;
 	}
 
@@ -69,6 +77,9 @@ public class UserDao {
 		}
 		catch(Exception e){
 			System.out.println(e.getStackTrace());
+		}
+		finally{
+			try { if (con != null) con.close(); } catch (Exception e) {};
 		}
 		return rs;
 	}

@@ -1,6 +1,6 @@
 package dao;
 import java.sql.*;
-import java.sql.PreparedStatement;
+
 import javax.security.auth.login.CredentialExpiredException;
 
 import bean.ConnectionProvider;
@@ -10,40 +10,44 @@ import bean.UserBean;
  *
  */
 public class CEODao {
-	Connection con=ConnectionProvider.getCon();
+	ConnectionProvider provider = new ConnectionProvider();
+	Connection con=provider.getCon();
 	ResultSet rs = null;
-	
+
 	public UserBean validate(UserBean formUser) throws CredentialExpiredException{
 
 		UserBean userObj = null;
+		PreparedStatement pstmt = null;
 		try{
 			boolean status=false;
-			
-			PreparedStatement pstmt;
+
+		
 			pstmt = con.prepareStatement("Select * from employee where BINARY email=? and password=?");
 			pstmt.setString(1, formUser.getEmail());
 			pstmt.setString(2, formUser.getPassword());
 			ResultSet rs =pstmt.executeQuery();
 			status=rs.next();
-			
-			
+
+
 			Statement stmt = con.createStatement();
-			/*//Vulnerability 1
-			String query = "Select * from employee where BINARY email =\""+formUser.getEmail()+"\" and password =\""+formUser.getPassword()+"\"";
-			System.out.println(query);
-			ResultSet rs = stmt.executeQuery(query);
-			status=rs.next();*/
-			System.out.println(status);
 			if(status){
 				userObj= createUserObj(rs);
 				if (formUser.getLastLogon() > userObj.getLastLogon()){
 					String update="update employee set lastlogontime= " + formUser.getLastLogon() + " where name = \"" + userObj.getName()+"\"";
 					stmt.executeUpdate(update);
+					System.out.println("****** CEO Logged in"+ userObj.getName());
 				}
 				else 
 					throw new CredentialExpiredException();
 			}
-		}catch(SQLException e){}
+		}catch(SQLException e){
+			System.out.println(e.getStackTrace());
+		}
+		finally{
+			try { if (rs != null) rs.close(); } catch (Exception e) {};
+			try { if (pstmt != null) pstmt.close(); } catch (Exception e) {};
+			try { if (con != null) con.close(); } catch (Exception e) {};
+		}
 		return userObj;
 	}
 
@@ -64,7 +68,7 @@ public class CEODao {
 		return user;
 
 	}
-	
+
 	public ResultSet getUsers(){
 		try{
 			PreparedStatement pstmt = con.prepareStatement("select * from employee");

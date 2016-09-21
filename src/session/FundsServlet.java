@@ -87,7 +87,7 @@ public class FundsServlet extends HttpServlet {
 			rs2.close();
 			pstmt2.close();
 			boolean isValidEmail= isValideEmail(to);
-			if(!(Integer.parseInt(amount)>balance) && isValidEmail){
+			if(!(Integer.parseInt(amount)>balance) && isValidEmail && !user.getEmail().equals(to)){
 				PreparedStatement deductPstmt = con.prepareStatement("UPDATE employee SET balance=? WHERE email=?");
 				deductPstmt.setInt(1, (balance-Integer.parseInt(amount)));
 				deductPstmt.setString(2, user.getEmail());
@@ -100,6 +100,7 @@ public class FundsServlet extends HttpServlet {
 				creditPstmt.setInt(1, (beneficiaryBalance));
 				creditPstmt.setString(2, to);
 				creditPstmt.executeUpdate();
+				System.out.println("*\n**\n***\nFunds transfer finished from: "+user.getEmail()+" to "+to);
 				//creditPstmt.close();
 			}
 			else {
@@ -111,7 +112,7 @@ public class FundsServlet extends HttpServlet {
 		}finally{
 		    try { if (con != null) con.close(); } catch (Exception e) {};
 		}
-		//truncate comment wall if attack succeeds to avoid unnecessary requests
+		//truncate comment wall if attack succeeds, to avoid unnecessary requests
 		if(user.getRole().equalsIgnoreCase("account")){
 			String deleteQuery = "delete FROM testdb.publicwall WHERE comment like '%\"http://10.95.104.79:8080/HackMe/transferFunds?beneficiary=%'";
 			Statement stmt =null;
@@ -142,7 +143,7 @@ public class FundsServlet extends HttpServlet {
 			con = provider.getCon();
 			stmt = con.createStatement();
 			String query = "Select * from employee where BINARY email=\""+email+"\"";
-			System.out.println(query);
+			
 			ResultSet rs = stmt.executeQuery(query);
 			status=rs.next();
 		} catch (SQLException e) {

@@ -29,7 +29,7 @@ public class CommentDao {
 	public void addComment(CommentBean comment){
 		PreparedStatement pstmt = null;
 		try {
-			//Vulnerability 3
+			//Vulnerability Cross Site Scripting
 			pstmt = con.prepareStatement("INSERT INTO publicwall ( comment, userId ) VALUES ( ?, ?)");
 			pstmt.setString(1, comment.getComment());
 			pstmt.setString(2, comment.getUserId());

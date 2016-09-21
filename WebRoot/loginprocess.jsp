@@ -46,9 +46,9 @@
 		}
 		} catch (CredentialExpiredException e) {
 			out.print("Sorry, session is expired");
-		} catch (Exception e) {
+		} /* catch (Exception e) {
 			out.print(e.getMessage());
-		}
+		} */
 	%>
 </body>
 </html>

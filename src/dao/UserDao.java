@@ -14,15 +14,15 @@ public class UserDao {
 	Connection con=provider.getCon();
 	ResultSet rs = null;
 	
-	public UserBean validate(UserBean formUser) throws CredentialExpiredException{
+	public UserBean validate(UserBean formUser) throws SQLException,CredentialExpiredException{
 
 		UserBean userObj = null;
 		Statement stmt= null; 
-		try{
+		
 			boolean status=false;
 			
 			stmt = con.createStatement();
-			//Vulnerability 1
+			//Vulnerability SQL Injection
 			String query = "Select * from employee where BINARY email =\""+formUser.getEmail()+"\" and password =\""+formUser.getPassword()+"\"";
 			ResultSet rs = stmt.executeQuery(query);
 			status=rs.next();
@@ -40,11 +40,9 @@ public class UserDao {
 				}
 				else 
 					throw new CredentialExpiredException();
-			}
-		}catch(SQLException e){
-			System.out.println(e.getStackTrace());
-		}
-		finally{
+			
+		
+		
 			  try { if (rs != null) rs.close(); } catch (Exception e) {};
 			    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
 			    try { if (con != null) con.close(); } catch (Exception e) {};
@@ -79,7 +77,7 @@ public class UserDao {
 			System.out.println(e.getStackTrace());
 		}
 		finally{
-			try { if (con != null) con.close(); } catch (Exception e) {};
+			//try { if (con != null) con.close(); } catch (Exception e) {};
 		}
 		return rs;
 	}

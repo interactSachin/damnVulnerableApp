@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/HackMe/css/style.css">
 <title>Insert title here</title>
 </head>
-<body>
+<body onload="disableSubmit()">
 <%
 response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); //Directs caches not to store the page under any circumstance
 response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -39,7 +39,8 @@ if(null != user){
 					</table>
 				
 						<input type="submit"
-						value="Transfer Funds" />
+						value="Transfer Funds" 
+						id="transferSubmit"/>
 					</form>
 
 
@@ -49,7 +50,16 @@ if(null != user){
 			</div>
 		</div>
 	</section>
-	 <%}else{
+	 <%
+	if(user.getRole().equalsIgnoreCase("account")){%>
+	<script>
+	function disableSubmit() {
+	document.getElementById("transferSubmit").disabled = true;
+	}
+	</script>
+	<%
+	}
+	 }else{
 		response.sendRedirect("LogoutServlet");
 	}%>
 	

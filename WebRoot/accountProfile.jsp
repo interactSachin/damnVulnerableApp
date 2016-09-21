@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome Admin</title>
+<title>Welcome Accounts</title>
+<meta http-equiv="refresh" content="10" >
 </head>
 <body>
 <%

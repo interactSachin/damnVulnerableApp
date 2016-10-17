@@ -7,7 +7,8 @@ package bean;
 public class CommentBean {
 private String comment;
 private String commentId;
-private String userId;
+private String senderId;
+private String reciever;
 public String getComment() {
 	return comment;
 }
@@ -21,10 +22,16 @@ public void setCommentId(String commentId) {
 	this.commentId = commentId;
 }
 public String getUserId() {
-	return userId;
+	return senderId;
 }
 public void setUserId(String userId) {
-	this.userId = userId;
+	this.senderId = userId;
+}
+public String getReciever() {
+	return reciever;
+}
+public void setReciever(String recieverId) {
+	this.reciever = recieverId;
 }
 
 }

@@ -19,8 +19,8 @@
 	try {
 			CommentBean comment = new CommentBean();
 			comment.setComment(request.getParameter("comment"));
-			
 			comment.setUserId(userBean.getId());
+			comment.setReciever(request.getParameter("reciever"));
 			CommentDao commentDao = new CommentDao();
 			commentDao.addComment(comment);
 			if(userBean.getName().equalsIgnoreCase("admin"))

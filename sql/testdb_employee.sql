@@ -44,7 +44,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('1','happy@stark.com',1001,'Happy','happyhogan',1474095772284,4000,'security',NULL),('10','teamC@stark.com',500,'TeamC','PASS1234',NULL,100,'employee',NULL),('11','teamD@stark.com',500,'TeamD','PASSWORD4',NULL,100,'employee',NULL),('2','jarvis@stark.com',99,'Jarvis','account',1474039663045,0,'account',NULL),('3','pepper@stark.com',1000,'Pepper Pots','whoknows',1474093141386,5000,'admin','pepper'),('4','rakeshj@stark.com',4500,'Rakesh','1234',1474036051708,5000,'employee',NULL),('5','sachin@stark.com',100,'Sachin','password1234',1474095876362,9999,'engineer','sachin'),('6','Tony@stark.com',1000,'Tony Stark','iamboss',1474091306078,9999,'ceo','tony'),('7','obadiah@stark.com',1000,'Obadiaah Stane','cfo',1474095123344,5555,'cfo',NULL),('8','teamA@stark.com',500,'TeamA','pass1234',NULL,100,'employee',NULL),('9','teamB@stark.com',500,'TeamB','password2',NULL,100,'employee',NULL);
+INSERT INTO `employee` VALUES ('1','happy@stark.com',98,'Happy Hogan','happyhogan',1476686352866,4000,'security','happy'),('10','teamC@stark.com',700,'TeamC','PASS1234',1475217703922,100,'employee',NULL),('11','teamD@stark.com',100,'TeamD','PASSWORD4',1475217952201,100,'employee',NULL),('12','teamE@stark.com',3600,'TeamE','Password5',1475217486898,100,'employee',NULL),('2','jarvis@stark.com',97300,'Jarvis','account',1475218721261,0,'account',NULL),('3','pepper@stark.com',600,'Pepper Pots','whoknows',1475239200268,5000,'admin','pepper'),('4','rakeshj@stark.com',9500,'Rakesh','1234',1474521419527,5000,'employee',NULL),('5','sachin@stark.com',1507,'Sachin','password1234',1476686377052,9999,'engineer','sachin'),('6','Tony@stark.com',99999,'Tony Stark','iamboss',1476684118326,9999,'ceo','tony'),('7','obadiah@stark.com',600,'Obadiaah Stane','cfo',1475239229103,5555,'cfo',NULL),('8','teamA@stark.com',800,'TeamA','pass1234',1475217597588,100,'employee',NULL),('9','teamB@stark.com',800,'TeamB','password2',1475217240336,100,'employee',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-17 12:43:37
+-- Dump completed on 2016-10-17 12:32:00

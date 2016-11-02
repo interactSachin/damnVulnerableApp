@@ -1,3 +1,5 @@
+<%@page import="util.UserUtil"%>
+<%@page import="dao.UserDao"%>
 <%@page import="bean.UserBean"%>
 <%@ page language="java" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,8 +91,10 @@ else{
 
 <%				
 if (null != user){
+	UserUtil userUtil= new UserUtil();
+	
 out.println("<p class=\"big\"><br><br><br><br><h3>Hi " + user.getName() + " you are successfully logged in</h3>");
-out.print("<br> Balance in your account is: " + user.getBalance()+"</p>");
+out.print("<br> Balance in your account is: " + userUtil.getLiveSalary(user)+"</p>");
 }
 else{
 	response.sendRedirect("LogoutServlet");

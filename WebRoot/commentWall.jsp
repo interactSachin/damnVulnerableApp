@@ -1,3 +1,4 @@
+<%@page import="util.UserUtil"%>
 <%@page import="javax.security.auth.login.CredentialExpiredException"%>
 <%@page import="bean.UserBean"%>
 <%@page import="dao.CommentDao"%>
@@ -27,15 +28,20 @@ response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward
 UserBean user= (UserBean)request.getSession().getAttribute("user");
 if(null != user){
 CommentDao commentDao = new CommentDao();
-	ResultSet rs = commentDao.getCommentsByReciever(user);
+	ResultSet rs = commentDao.getCommentObjByReciever(user);
 	//Vulnerability 2
 	while(rs.next()){%>
-	<%= "<br><br><td>"+rs.getString("comment")+ "</td>" %>
+	<br><br><tr><td><%UserUtil userUtil = new UserUtil();%> 
+	<%=userUtil.getUser(rs.getInt("senderId")).getName()+ "</td>"	%> Says:
+	<%=rs.getString("comment")+ "</td>"	%>
+	
+	
 	<%} %>
 	</p><form action="commentProcess.jsp" method="post">
 	<input type="text" name="comment" style="width: 358px; height: 139px; maxlength="128" placeholder="Message">
 	<br><input type="text" name="reciever" style="width: 200px; height: 20px; maxlength="25" placeholder="To">
 	<br><input type="submit" value="Comment">
+	<input type="submit" name="Flush Inbox" value="Flush Inbox" />
 	 <%}else{
 		response.sendRedirect("LogoutServlet");
 	}%>

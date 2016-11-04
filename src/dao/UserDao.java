@@ -3,6 +3,7 @@ import java.sql.*;
 
 import javax.security.auth.login.CredentialExpiredException;
 
+import util.UserUtil;
 import bean.ConnectionProvider;
 import bean.UserBean;
 /**
@@ -27,7 +28,7 @@ public class UserDao {
 		ResultSet rs = stmt.executeQuery(query);
 		status=rs.next();
 		if(status){
-			userObj= createUserObj(rs);
+			userObj= UserUtil.createUserObj(rs);
 
 			if(userObj.getRole().equals("ceo")){
 				return null;
@@ -50,23 +51,6 @@ public class UserDao {
 		return userObj;
 	}
 
-	private UserBean createUserObj(ResultSet rs){
-		UserBean user = new UserBean();
-		try {
-			user.setId(rs.getString("id"));
-			user.setEmail(rs.getString("email"));
-			user.setName(rs.getString("name"));
-			user.setBalance(rs.getString("balance"));
-			user.setLastLogon(rs.getLong("lastLogonTime"));
-			user.setImage(rs.getString("image"));
-			user.setRole(rs.getString("role"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return user;
-
-	}
 
 	public ResultSet getUsers(){
 		try{

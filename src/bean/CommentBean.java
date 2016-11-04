@@ -21,10 +21,10 @@ public String getCommentId() {
 public void setCommentId(String commentId) {
 	this.commentId = commentId;
 }
-public String getUserId() {
+public String getSenderId() {
 	return senderId;
 }
-public void setUserId(String userId) {
+public void setSenderId(String userId) {
 	this.senderId = userId;
 }
 public String getReciever() {

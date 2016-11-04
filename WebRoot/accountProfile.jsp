@@ -14,7 +14,7 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); //Dir
 response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward 
 UserBean userBean= (UserBean)session.getAttribute("user");
-if(null==userBean)
+if(null==userBean||!userBean.getRole().equals("account"))
 {
 	response.sendRedirect("LogoutServlet");
 }

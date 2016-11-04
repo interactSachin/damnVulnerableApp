@@ -15,11 +15,21 @@
 	response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
 	response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward 
 	UserBean userBean= (UserBean)session.getAttribute("user");
-	if(null!=userBean){
+	if(null!=userBean&&request.getParameter("Flush Inbox")!=null){
+		CommentDao cmntDao = new CommentDao();
+		cmntDao.flushCommentByUser(userBean.getEmail());
+		if(userBean.getName().equalsIgnoreCase("admin"))
+			response.sendRedirect("adminProfile.jsp");
+		if(userBean.getName().equalsIgnoreCase("account"))
+			response.sendRedirect("accountProfile.jsp");
+		else
+			response.sendRedirect("profile.jsp");
+	}
+	else if(null!=userBean){
 	try {
 			CommentBean comment = new CommentBean();
 			comment.setComment(request.getParameter("comment"));
-			comment.setUserId(userBean.getId());
+			comment.setSenderId(userBean.getId());
 			comment.setReciever(request.getParameter("reciever"));
 			CommentDao commentDao = new CommentDao();
 			commentDao.addComment(comment);

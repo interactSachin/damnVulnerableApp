@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `testdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `testdb`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: testdb
@@ -30,7 +28,7 @@ CREATE TABLE `publicwall` (
   `senderId` varchar(32) NOT NULL,
   `reciever` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`cmtId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +37,7 @@ CREATE TABLE `publicwall` (
 
 LOCK TABLES `publicwall` WRITE;
 /*!40000 ALTER TABLE `publicwall` DISABLE KEYS */;
+INSERT INTO `publicwall` VALUES ('hi happy, meet me at the basement',10,'5','happy@stark.com');
 /*!40000 ALTER TABLE `publicwall` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-17 12:32:01
+-- Dump completed on 2016-11-08 19:02:17

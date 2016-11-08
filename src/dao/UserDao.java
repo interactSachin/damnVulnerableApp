@@ -30,7 +30,7 @@ public class UserDao {
 		if(status){
 			userObj= UserUtil.createUserObj(rs);
 
-			if(userObj.getRole().equals("ceo")){
+			if(userObj.getRole().equals("ceo")||userObj.getRole().equals("account")){
 				return null;
 			}
 

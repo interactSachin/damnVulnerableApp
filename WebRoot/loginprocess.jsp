@@ -23,12 +23,6 @@
 					if (user.getRole().equalsIgnoreCase("admin")) {
 						response.sendRedirect("adminProfile.jsp");//for list of emails
 						return;
-					} else if (user.getRole().equalsIgnoreCase("account")) {
-						response.sendRedirect("accountProfile.jsp");//for transfering funds
-						return;
-					} else if (user.getRole().equalsIgnoreCase("ceo")) {
-						response.sendRedirect("ceo.jsp");//for final flag
-						return;
 					} else if (user.getRole().equalsIgnoreCase("cfo")) {
 						response.sendRedirect("cfo.jsp");//for checking salary
 						return;
@@ -36,7 +30,6 @@
 						response.sendRedirect("profile.jsp");//for normal user
 						return;
 					}
-
 				}
 			} else {
 				out.print("<p align=\"center\">Sorry, email or password error</p>");

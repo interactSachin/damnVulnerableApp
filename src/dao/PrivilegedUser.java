@@ -9,7 +9,7 @@ import bean.UserBean;
  * @author Sachin
  *
  */
-public class CEODao {
+public class PrivilegedUser {
 	ConnectionProvider provider = new ConnectionProvider();
 	Connection con=provider.getCon();
 	ResultSet rs = null;
@@ -35,7 +35,7 @@ public class CEODao {
 				if (formUser.getLastLogon() > userObj.getLastLogon()){
 					String update="update employee set lastlogontime= " + formUser.getLastLogon() + " where name = \"" + userObj.getName()+"\"";
 					stmt.executeUpdate(update);
-					System.out.println("****** CEO Logged in"+ userObj.getName());
+					System.out.println("****** CEO/Account Logged in"+ userObj.getName());
 				}
 				else 
 					throw new CredentialExpiredException();

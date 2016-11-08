@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `testdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `testdb`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: testdb
@@ -44,7 +42,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('1','happy@stark.com',98,'Happy Hogan','happyhogan',1476686352866,4000,'security','happy'),('10','teamC@stark.com',700,'TeamC','PASS1234',1475217703922,100,'employee',NULL),('11','teamD@stark.com',100,'TeamD','PASSWORD4',1475217952201,100,'employee',NULL),('12','teamE@stark.com',3600,'TeamE','Password5',1475217486898,100,'employee',NULL),('2','jarvis@stark.com',97300,'Jarvis','account',1475218721261,0,'account',NULL),('3','pepper@stark.com',600,'Pepper Pots','whoknows',1475239200268,5000,'admin','pepper'),('4','rakeshj@stark.com',9500,'Rakesh','1234',1474521419527,5000,'employee',NULL),('5','sachin@stark.com',1507,'Sachin','password1234',1476686377052,9999,'engineer','sachin'),('6','Tony@stark.com',99999,'Tony Stark','iamboss',1476684118326,9999,'ceo','tony'),('7','obadiah@stark.com',600,'Obadiaah Stane','cfo',1475239229103,5555,'cfo',NULL),('8','teamA@stark.com',800,'TeamA','pass1234',1475217597588,100,'employee',NULL),('9','teamB@stark.com',800,'TeamB','password2',1475217240336,100,'employee',NULL);
+INSERT INTO `employee` VALUES ('1','happy@stark.com',199,'Happy Hogan','happyhogan',1478175738085,4000,'security','happy'),('10','teamC@stark.com',700,'TeamC','PASS1234',1478594194391,100,'employee',NULL),('11','teamD@stark.com',100,'TeamD','PASSWORD4',1478594191086,100,'employee',NULL),('12','teamE@stark.com',3600,'TeamE','Password5',1478594188011,100,'employee',NULL),('13','teamF@stark.com',100,'TeamF','pass1324',1478596656263,100,'employee',NULL),('14','teamG@stark.com',100,'TeamG','gpass1234',1478596539402,100,'employee',NULL),('15','teamH@stark.com',100,'TeamH','1234pass',1478596548605,100,'employee',NULL),('2','jarvis@stark.com',9999,'Jarvis','account',1478611757613,0,'account',NULL),('3','pepper@stark.com',600,'Pepper Pots','whoknows',1478177492852,5000,'admin','pepper'),('4','rakeshj@stark.com',9500,'Rakesh','1234',1474521419527,5000,'employee',NULL),('5','sachin@stark.com',3212,'Sachin','password1234',1478596921909,9999,'engineer','sachin'),('6','Tony@stark.com',97687,'Tony Stark','iamboss',1478609318591,9999,'ceo','tony'),('7','obadiah@stark.com',600,'Obadiaah Stane','cfo',1475239229103,5555,'cfo',NULL),('8','teamA@stark.com',800,'TeamA','pass1234',1478600621143,100,'employee',NULL),('9','teamB@stark.com',800,'TeamB','password2',1478600588294,100,'employee',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-17 12:32:00
+-- Dump completed on 2016-11-08 19:02:16

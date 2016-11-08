@@ -46,7 +46,7 @@ td, th {
 							value="<%=System.currentTimeMillis()%>" /> <input type="submit"
 							value="Login" />
 					</form>
-				<a class="navbar-brand" href="/HackMe/secureLogin.jsp">CEO Login here</a>
+				<a class="navbar-brand" href="/HackMe/secureLogin.jsp">CEO/Account Login here</a>
 
 					</p>
 

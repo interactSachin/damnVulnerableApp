@@ -8,21 +8,89 @@ A vulnerable web app with intentional security flaws designed to demonstrate and
 
 ## Prerequisites
 
-Make sure you have the following installed:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Java JDK 11](https://www.java.com)
 - [Maven](https://maven.apache.org)
+- [Git](https://git-scm.com)
 
-On Mac you can install Java and Maven with Homebrew:
-```bash
-brew install openjdk@11
-brew install maven
-```
+---
 
-Add Java to your PATH:
+## Setup Instructions
+
+### Mac
+
+**Install dependencies:**
 ```bash
+brew install openjdk@11 maven git
 echo 'export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
+```
+
+**Verify:**
+```bash
+java -version
+mvn -version
+git --version
+```
+
+---
+
+### Windows
+
+**Install dependencies:**
+```bash
+winget install Git.Git
+winget install Apache.Maven
+winget install Microsoft.OpenJDK.11
+```
+
+**Add Maven and Java to PATH:**
+1. Open **Start → Search "Environment Variables"**
+2. Click **Environment Variables**
+3. Under **System Variables** find **Path** and click **Edit**
+4. Add the following:
+   - `C:\Program Files\Maven\bin`
+   - `C:\Program Files\Microsoft\jdk-11\bin`
+5. Click **OK** and restart your terminal
+
+**Verify:**
+```cmd
+java -version
+mvn -version
+git --version
+```
+
+---
+
+### Linux (Ubuntu/Debian)
+
+**Install dependencies:**
+```bash
+sudo apt update
+sudo apt install -y git maven openjdk-11-jdk
+```
+
+**Verify:**
+```bash
+java -version
+mvn -version
+git --version
+```
+
+---
+
+### Linux (Fedora/RHEL)
+
+**Install dependencies:**
+```bash
+sudo dnf install -y git maven java-11-openjdk
+```
+
+**Verify:**
+```bash
+java -version
+mvn -version
+git --version
 ```
 
 ---

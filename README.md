@@ -73,6 +73,25 @@ docker-compose up
 
 ---
 
+## Application Workflows
+
+**1. Login**
+Regular employees and privileged users (CEO/Accounts) have separate login pages with different security checks.
+
+**2. Profile Dashboard**
+After login, users land on a role-based dashboard showing their account balance and personal details.
+
+**3. Comment Wall**
+Users can send and receive messages with other employees, and can clear their inbox.
+
+**4. Fund Transfers**
+Users can transfer money to other employees by specifying a recipient and amount.
+
+**5. Logout**
+Ends the session and redirects back to the login page.
+
+---
+
 ## Vulnerabilities Included
 
 | Vulnerability | Location |

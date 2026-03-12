@@ -52,18 +52,6 @@ http://localhost:8080/HackMe/index.jsp
 
 ---
 
-## Test Credentials
-
-| Email | Password | Role |
-|---|---|---|
-| sachin@stark.com | password1234 | engineer |
-| Tony@stark.com | iamboss | ceo |
-| pepper@stark.com | whoknows | admin |
-| happy@stark.com | happyhogan | security |
-| jarvis@stark.com | account | account |
-
----
-
 ## Stopping the App
 ```bash
 docker-compose down
@@ -103,4 +91,3 @@ docker-compose up
 - Apache Tomcat 9
 - MySQL 5.7
 - Docker
-

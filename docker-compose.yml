@@ -1,0 +1,24 @@
+services:
+  app:
+    platform: linux/amd64
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - JAVA_OPTS=-Xmx512m
+  db:
+    platform: linux/amd64
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "db123!@#qwe"
+      MYSQL_DATABASE: testdb
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pdb123!@#qwe"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

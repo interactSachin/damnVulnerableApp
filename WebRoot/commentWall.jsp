@@ -30,7 +30,7 @@ if(null != user){
 CommentDao commentDao = new CommentDao();
 	ResultSet rs = commentDao.getCommentObjByReciever(user);
 	//Vulnerability 2
-	while(rs.next()){%>
+	if(rs != null) while(rs.next()){%>
 	<br><br><tr><td><%UserUtil userUtil = new UserUtil();%> 
 	<%=userUtil.getUser(rs.getInt("senderId")).getName()+ "</td>"	%> Says:
 	<%=rs.getString("comment")+ "</td>"	%>

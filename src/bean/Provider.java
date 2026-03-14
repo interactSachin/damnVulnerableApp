@@ -1,3 +1,7 @@
+/* damnVulnerableApp - A vulnerable web app for security training
+ * Copyright (C) 2024 Sachin Singh
+ * Licensed under GNU GPL v3.0 - see LICENSE file for details
+ */
 package bean;
 
 public interface Provider {

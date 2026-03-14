@@ -178,3 +178,11 @@ Ends the session and redirects back to the login page.
 - Apache Tomcat 9
 - MySQL 5.7
 - Docker
+
+---
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+Copyright (C) 2024 Sachin Singh
